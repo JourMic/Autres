@@ -1,0 +1,84 @@
+    type: custom:auto-entities
+    card:
+      type: custom:bar-card
+      icon: mdi:water
+      title_position: inside
+      height: 35
+      columns: "2"
+      positions:
+        icon: inside
+        indicator: inside
+        name: inside
+        value: inside
+      show_icon: true
+      align: split
+      max: 100
+      unit_of_measurement: "%"
+      severity:
+        - color: "#FF453A"
+          from: 0
+          to: 9
+          icon: mdi:battery-outline
+        - color: "#FE6230"
+          from: 10
+          to: 19
+          icon: mdi:battery-10
+        - color: "#FE7F26"
+          from: 20
+          to: 29
+          icon: mdi:battery-20
+        - color: "#FE9C1C"
+          from: 30
+          to: 39
+          icon: mdi:battery-30
+        - color: "#FEB912"
+          from: 40
+          to: 49
+          icon: mdi:battery-40
+        - color: "#FED709"
+          from: 50
+          to: 59
+          icon: mdi:battery-50
+        - color: "#D8CC15"
+          from: 60
+          to: 69
+          icon: mdi:battery-60
+        - color: "#B3C121"
+          from: 70
+          to: 79
+          icon: mdi:battery-70
+        - color: "#8EB62E"
+          from: 80
+          to: 89
+          icon: mdi:battery-80
+        - color: "#69AB3A"
+          from: 90
+          to: 99
+          icon: mdi:battery-90
+        - color: "#44A047"
+          from: 100
+          to: 100
+          icon: mdi:battery
+      card_mod:
+        style: |
+          bar-card-currentbar, bar-card-current, bar-card-backgroundbar {
+              height: 8px !important;
+              margin-top: 30px;
+              margin-left: -100px;
+          }
+          ha-icon{
+              color: lightblue !important;
+          }
+          bar-card-iconbar {
+              margin-bottom: 10px;
+          }
+    filter:
+      include:
+        - options: {}
+          attributes:
+            device_class: battery
+          domain: sensor
+    sort:
+      method: state
+      numeric: true
+    show_empty: false
