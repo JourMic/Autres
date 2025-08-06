@@ -1,3 +1,13 @@
+
+# Battery Card
+
+![image](https://github.com/user-attachments/assets/1ad53597-1ec0-47c0-9747-d73c9c18fc7e)
+
+
+## Install from HACS
+
+Copy piles.yaml file
+
 # F1 Card
 
 <img width="1376" height="1032" alt="image" src="https://github.com/user-attachments/assets/d8a2dbeb-1088-4e98-8469-84d2f4cf8225" />
@@ -9,5 +19,7 @@
 [formulaone-card)](https://github.com/marcokreeft87/formulaone-card)
 
 [tabbed-card](https://github.com/kinghat/tabbed-card) 
+
+Copy F1.yaml file
 
 
