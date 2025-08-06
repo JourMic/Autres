@@ -36,4 +36,6 @@ Add a new page. Use panel card.
 
 Copy F1.yaml file
 
+If you are an English speaker, you can remove the translations section.
+
 
