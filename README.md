@@ -13,8 +13,7 @@
 
 Copy piles.yaml file
 
-
-
+----
 
 # F1 Card
 
@@ -27,6 +26,8 @@ Copy piles.yaml file
 [formulaone-card)](https://github.com/marcokreeft87/formulaone-card)
 
 [tabbed-card](https://github.com/kinghat/tabbed-card) 
+
+[lovelace-card-mod](https://github.com/thomasloven/lovelace-card-mod)
 
 Copy F1.yaml file
 
