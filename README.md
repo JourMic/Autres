@@ -1,12 +1,18 @@
 
 # Battery Card
 
-![image](https://github.com/user-attachments/assets/1ad53597-1ec0-47c0-9747-d73c9c18fc7e)
-
+<img width="1376" height="1032" alt="image" src="https://github.com/user-attachments/assets/a760510d-3634-440d-a24a-34cf8a652724" />
 
 ## Install from HACS
 
+[lovelace-auto-entities](https://github.com/thomasloven/lovelace-auto-entities)
+[lovelace-card-mod](https://github.com/thomasloven/lovelace-card-mod)
+[bar-card](https://github.com/spacerokk/bar-card)
+
 Copy piles.yaml file
+
+
+
 
 # F1 Card
 
