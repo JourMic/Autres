@@ -6,7 +6,9 @@
 ## Install from HACS
 
 [lovelace-auto-entities](https://github.com/thomasloven/lovelace-auto-entities)
+
 [lovelace-card-mod](https://github.com/thomasloven/lovelace-card-mod)
+
 [bar-card](https://github.com/spacerokk/bar-card)
 
 Copy piles.yaml file
