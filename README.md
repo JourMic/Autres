@@ -11,6 +11,8 @@
 
 [bar-card](https://github.com/spacerokk/bar-card)
 
+Add a new page. Use panel card.
+
 Copy piles.yaml file
 
 ----
@@ -28,6 +30,8 @@ Copy piles.yaml file
 [tabbed-card](https://github.com/kinghat/tabbed-card) 
 
 [lovelace-card-mod](https://github.com/thomasloven/lovelace-card-mod)
+
+Add a new page. Use panel card.
 
 Copy F1.yaml file
 
