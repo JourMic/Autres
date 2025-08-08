@@ -26,7 +26,7 @@ Copy piles.yaml file
 
 ## Install from HACS
 
-[formulaone-card)](https://github.com/marcokreeft87/formulaone-card)
+[formulaone-card](https://github.com/marcokreeft87/formulaone-card)
 
 [tabbed-card](https://github.com/kinghat/tabbed-card) 
 
