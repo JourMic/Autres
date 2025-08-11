@@ -3,7 +3,9 @@
 
 <img width="1376" height="1032" alt="image" src="https://github.com/user-attachments/assets/a760510d-3634-440d-a24a-34cf8a652724" />
 
-## Install from HACS
+# Install 
+
+### From HACS
 
 [lovelace-auto-entities](https://github.com/thomasloven/lovelace-auto-entities)
 
@@ -24,7 +26,9 @@ Copy piles.yaml file
 
 <img width="1376" height="1032" alt="image" src="https://github.com/user-attachments/assets/b7af0037-eea5-4360-b6e1-275449bcbcf6" />
 
-## Install from HACS
+# Install 
+
+### From HACS
 
 [formulaone-card](https://github.com/marcokreeft87/formulaone-card)
 
