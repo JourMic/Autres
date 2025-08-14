@@ -1,10 +1,10 @@
 # Tableau-Méteo
 
-![image](https://github.com/user-attachments/assets/814ac96a-4fed-484e-94e3-7f4673e6c23f)
+![image](https://github.com/user-attachments/assets/86f98b9b-4b30-4a57-bbb1-2c8a9cc90c75)
 
-<img width="1376" height="1032" alt="image" src="https://github.com/user-attachments/assets/5e2dd3d1-a8d5-4bd4-b933-6efcc3a0b020" />
+![image](https://github.com/user-attachments/assets/39cf3321-59e9-4291-9804-2c570408d1ad)
 
-![image](https://github.com/user-attachments/assets/38dfa039-542f-4b90-914c-6f94581c007e)
+![image](https://github.com/user-attachments/assets/80b46300-3bcd-4514-945b-d254d96c33ed)
 
 # Install: 
 
