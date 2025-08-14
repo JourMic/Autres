@@ -1,3 +1,28 @@
+# Tableau-Méteo
+
+![image](https://github.com/user-attachments/assets/814ac96a-4fed-484e-94e3-7f4673e6c23f)
+
+<img width="1376" height="1032" alt="image" src="https://github.com/user-attachments/assets/5e2dd3d1-a8d5-4bd4-b933-6efcc3a0b020" />
+
+![image](https://github.com/user-attachments/assets/38dfa039-542f-4b90-914c-6f94581c007e)
+
+# Install: 
+
+### From HACS
+
+[lovelace-layout-card](https://github.com/thomasloven/lovelace-layout-card)
+
+[lovelace-html-card](https://github.com/PiotrMachowski/lovelace-html-card)
+
+[lovelace-mushroom](https://github.com/piitaya/lovelace-mushroom)
+
+[ha-lcars](https://github.com/th3jesta/ha-lcars)
+
+Add a new page. Use panel card.
+
+Copy Mon-Tableau-Meteo.yaml file
+
+----
 
 # Battery Card
 
