@@ -31,34 +31,39 @@ views:
                     card_mod:
                       class: header-left
                     content: |
-                      <h1>Intérieure (°C)</h1>
+                      <h1>Intérieure</h1>
                       
                   - type: custom:mushroom-template-card
-                    primary: '{{ states(''sensor.maison_temperature'') }}'
+                    primary: >- 
+                       {{ states('sensor.maison_temperature') }}
                     tap_action:
                       action: none
                     card_mod:
-                      style: |
-                        ha-card {
-                         --card-primary-font-size: 160px;
-                          --card-primary-line-height: 161px !important;
-                          text-align: center;
-                          {% set teint = states('sensor.maison_temperature') | float(0) %}
-                          {% if teint < 18 %} --card-primary-color:#bc4dc1;   # Poupre   
-                          {% elif teint < 20 %} --card-primary-color:#90D5FF; # Bleu 
-                          {% elif teint < 23 %} --card-primary-color:#00ff13; # vert  
-                          {% elif teint < 25 %} --card-primary-color:#FFED52; # jaune 
-                          {% else %} --card-primary-color:#FF5B61;            # Rouge
-                          {% endif %} 
-                        }
                       class: middle-left
-                      
+                      style:
+                        ha-tile-info$: |
+                         :host {
+                          width: 100%;
+                          text-align: center !important;
+                         }
+                         .primary {
+                          font-size: 160px !important;
+                          line-height: 161px !important;
+                          {% set teint = states('sensor.maison_temperature') | float(0) %}
+                          {% if teint < 18 %} color:#bc4dc1 !important;     # Poupre   
+                          {% elif teint < 20 %} color:#90D5FF !important;   # Bleu 
+                          {% elif teint < 23 %} color:#00ff13 !important;   # vert  
+                          {% elif teint < 25 %} color:#FFED52 !important;  # jaune 
+                          {% else %} color:#FF5B61  !important;             # Rouge
+                          {% endif %} 
+                         }
+                         
                   - type: custom:html-card
                     title: ''
                     card_mod:
                       class: bar-left
                     content: |
-                      <h1>Extérieure (°C)</h1>
+                      <h1>Extérieure</h1>
                       
                   - type: custom:mushroom-template-card
                     primary: >-
@@ -67,53 +72,66 @@ views:
                     tap_action:
                       action: none
                     card_mod:
-                      style: |
-                        ha-card {
-                          --card-primary-font-size: 160px;
-                          --card-primary-line-height: 161px !important;
-                          text-align: center;
-                          {% set teext = states('sensor.tempest_st_00032986_temperature') | float(0) %}
-                          {% if teext < -25 %} --card-primary-color:#bc4dc1;     # Poupre     
-                          {% elif teext < -20 %} --card-primary-color:#cf80d3;   # Poupre claire 
-                          {% elif teext < -15 %} --card-primary-color:#00CEC8;   # Bleu vert
-                          {% elif teext < 0 %} --card-primary-color:#90D5FF;     # Bleu
-                          {% elif teext < 15 %} --card-primary-color:#52D6FC;    # Bleu moyen
-                          {% elif teext < 20 %} --card-primary-color:#93E3FD;    # Bleu claire
-                          {% elif teext < 25 %} --card-primary-color:#00ff13;    # vert     
-                          {% elif teext < 30 %} --card-primary-color:#FFED52;    # jaune 
-                          {% elif teext < 35 %} --card-primary-color:#FDBA6F;    # Orange   
-                          {% else %} --card-primary-color:#FF5B61;               # Rouge              
-                          {% endif %} 
-                        }
                       class: middle-left
+                      style:
+                        ha-tile-info$: |
+                         :host {
+                          width: 100%;
+                          text-align: center !important;
+                         }
+                         .primary {
+                            font-size: 160px !important;
+                            line-height: 161px !important;
+                            {% set teext = states('sensor.tempest_st_00032986_temperature') | float(0) %}
+                            {% if teext < -25 %} color:#bc4dc1 !important;     # Poupre     
+                            {% elif teext < -20 %} color:#cf80d3 !important;   # Poupre claire 
+                            {% elif teext < -15 %} color:#00CEC8 !important;   # Bleu vert
+                            {% elif teext < 0 %} color:#90D5FF !important;     # Bleu
+                            {% elif teext < 15 %} color:#52D6FC !important;    # Bleu moyen
+                            {% elif teext < 20 %} color:#93E3FD !important;    # Bleu claire
+                            {% elif teext < 25 %} color:#00ff13 !important;    # vert     
+                            {% elif teext < 30 %} color:#FFED52 !important;    # jaune 
+                            {% elif teext < 35 %} color:#FDBA6F !important;    # Orange   
+                            {% else %} color:#FF5B61 !important;               # Rouge              
+                            {% endif %} 
+                         }
                       
                   - type: custom:html-card
                     title: ''
                     card_mod:
                       class: bar-left
                     content: |
-                      <h1>Vistesse du vent (km/h)</h1>
+                      <h1>Vistesse du vent</h1>
                       
                   - type: custom:mushroom-template-card
                     primary: >-
-                      {{ states('sensor.tempest_st_00032986_wind_speed') |
-                      round(1) }}
+                      {% set vent = states('sensor.tempest_st_00032986_wind_speed') | float(0)
+                      %} {% if vent > 0 %}
+                         {{ states('sensor.tempest_st_00032986_wind_speed') | round(1) }}
+                      {% else %} 
+                         {{ states('sensor.tempest_st_00032986_wind_direction_avg') }}
+                      {% endif %}  
                     tap_action:
                       action: none
                     card_mod:
-                      style: |
-                        ha-card {
-                          --card-primary-font-size: 160px;
-                          --card-primary-line-height: 161px !important;
-                          text-align: center;
-                          {% set vent = states('sensor.tempest_st_00032986_wind_speed') | float(0) %}
-                          {% if vent == 0 %} --card-primary-color:#FFFFFF;       # Blanc
-                          {% elif vent < 10 %} --card-primary-color:#00ff13;     # vert     
-                          {% elif vent < 15 %} --card-primary-color:#FFED52;     # jaune 
-                          {% elif vent < 20 %} --card-primary-color:#FDBA6F;     # Orange   
-                          {% else %} --card-primary-color:#FF5B61;               # Rouge              
-                          {% endif %} 
                       class: middle-left
+                      style:
+                        ha-tile-info$: |
+                         :host {
+                          width: 100%;
+                          text-align: center !important;
+                         }
+                         .primary {
+                            font-size: 160px !important;
+                            line-height: 161px !important;
+                            {% set vent = states('sensor.tempest_st_00032986_wind_speed') | float(0) %}
+                            {% if vent == 0 %} color:#FFFFFF !important;       # Blanc
+                            {% elif vent < 10 %} color:#00ff13 !important;     # vert     
+                            {% elif vent < 15 %} color:#FFED52 !important;     # jaune 
+                            {% elif vent < 20 %} color:#FDBA6F !important;     # Orange   
+                            {% else %} color:#FF5B61 !important;               # Rouge              
+                            {% endif %} 
+                         }
                       
                   - type: custom:html-card
                     title: ''
@@ -140,21 +158,25 @@ views:
                     tap_action:
                       action: none
                     card_mod:
-                      style: |
-                        ha-card {
-                          --card-primary-font-size: 160px;
-                          --card-primary-line-height: 161px !important;
-                          text-align: center;
-                          --card-primary-color:#FFFFFF; # Blanc
-                        }
                       class: middle-left
+                      style:
+                        ha-tile-info$: |
+                         :host {
+                          width: 100%;
+                          text-align: center !important;
+                         }
+                         .primary {
+                            font-size: 160px !important;
+                            line-height: 161px !important;
+                            color:#FFFFFF !important; # Blanc
+                         }
                       
                   - type: custom:html-card
                     title: ''
                     card_mod:
                       class: bar-left
                     content: |
-                      <h1>Index UV - Bruit(DB)</h1>
+                      <h1>Index UV - Bruit</h1>
 
                   - type: custom:mushroom-template-card
                     primary: >-
@@ -167,30 +189,34 @@ views:
                     tap_action:
                       action: none
                     card_mod:
-                      style: |
-                        ha-card {
-                          --card-primary-font-size: 160px;
-                          --card-primary-line-height: 161px !important;
-                          text-align: center;
-                          {% set iuv = states('sensor.tempest_st_00032986_uv_index') | float(0) %}
-                          {% set bruit = states('sensor.maison_bruit') | int(0)  %}
-                          {% if iuv > 0 %} 
-                             {% if iuv < 3 %} --card-primary-color:#00ff13;       # Vert
-                             {% elif iuv < 6 %} --card-primary-color:#FFED52;     # Jaune
-                             {% elif iuv < 8 %} --card-primary-color:#FDBA6F;     # Orange
-                             {% elif iuv < 11 %} --card-primary-color:#FF5B61;    # Rouge
-                             {% else %} --card-primary-color:#bc4dc1;             # Poupre
-                             {% endif %}
-                          {% else %}
-                             {% if bruit < 60 %} --card-primary-color:#00ff13;       # Vert
-                             {% elif bruit < 90 %} --card-primary-color:#FFED52;     # Jaune
-                             {% elif bruit < 110 %} --card-primary-color:#FDBA6F;    # Orange
-                             {% elif bruit < 130 %} --card-primary-color:#FF5B61;    # Rouge
-                             {% else %} --card-primary-color:#bc4dc1;                # Poupre
-                             {% endif %}  
-                          {% endif %} 
-                          }      
                       class: middle-left
+                      style:
+                        ha-tile-info$: |
+                         :host {
+                          width: 100%;
+                          text-align: center !important;
+                         }
+                         .primary {
+                            font-size: 160px !important;
+                            line-height: 161px !important;
+                            {% set iuv = states('sensor.tempest_st_00032986_uv_index') | float(0) %}
+                            {% set bruit = states('sensor.maison_bruit') | int(0)  %}
+                            {% if iuv > 0 %} 
+                              {% if iuv < 3 %} color:#00ff13 !important;       # Vert
+                              {% elif iuv < 6 %} color:#FFED52 !important;     # Jaune
+                              {% elif iuv < 8 %} color:#FDBA6F !important;     # Orange
+                              {% elif iuv < 11 %} color:#FF5B61 !important;    # Rouge
+                              {% else %} color:#bc4dc1 !important;             # Poupre
+                              {% endif %}
+                            {% else %}
+                              {% if bruit < 60 %} color:#00ff13 !important;       # Vert
+                              {% elif bruit < 90 %} color:#FFED52 !important;     # Jaune
+                              {% elif bruit < 110 %} color:#FDBA6F !important;    # Orange
+                              {% elif bruit < 130 %} color:#FF5B61 !important;    # Rouge
+                              {% else %} color:#bc4dc1 !important;                # Poupre
+                              {% endif %}  
+                            {% endif %} 
+                         }
                       
                   - type: custom:html-card
                     title: ''
@@ -207,20 +233,24 @@ views:
                     tap_action:
                       action: none
                     card_mod:
-                      style: |
-                        ha-card {
-                          --card-primary-font-size: 160px;
-                          --card-primary-line-height: 161px !important;
-                          text-align: center;
-                          {% set aqi = states('sensor.mauricie_quebec_canada_indice_de_qualite_de_l_air') | int(0) %}
-                          {% if aqi < 50 %} --card-primary-color:#00ff13;        # Vert
-                          {% elif aqi < 100 %} --card-primary-color:#FFED52;     # Jaune
-                          {% elif aqi < 160 %} --card-primary-color:#FDBA6F;     # Orange
-                          {% elif aqi < 200 %} --card-primary-color:#FF5B61;     # Rouge
-                          {% else %} --card-primary-color:#bc4dc1;               # Poupre
-                          {% endif %} 
-                        }
                       class: middle-left
+                      style:
+                        ha-tile-info$: |
+                         :host {
+                          width: 100%;
+                          text-align: center !important;
+                         }
+                         .primary {
+                            font-size: 160px !important;
+                            line-height: 161px !important;
+                            {% set aqi = states('sensor.mauricie_quebec_canada_indice_de_qualite_de_l_air') | int(0) %}
+                            {% if aqi < 50 %} color:#00ff13 !important;        # Vert
+                            {% elif aqi < 100 %} color:#FFED52 !important;     # Jaune
+                            {% elif aqi < 160 %} color:#FDBA6F !important;     # Orange
+                            {% elif aqi < 200 %} color:#FF5B61 !important;     # Rouge
+                            {% else %} color:#bc4dc1 !important;               # Poupre
+                            {% endif %} 
+                         }
                       
                   - type: custom:html-card
                     title: ''
@@ -240,7 +270,7 @@ views:
                     card_mod:
                       class: header-left
                     content: |
-                      <h1>Pluies (mm) - CO2</h1>
+                      <h1>Pluies - CO2</h1>
                       
                   - type: custom:mushroom-template-card
                     primary: >-
@@ -253,36 +283,40 @@ views:
                     tap_action:
                       action: none
                     card_mod:
-                      style: |
-                        ha-card {
-                          --card-primary-font-size: 160px;
-                          --card-primary-line-height: 161px !important;
-                          text-align: center;
-                          {% set pluie = states('sensor.tempest_st_00032986_rain_today') | float(0) %}
-                          {% set co2 = states('sensor.maison_dioxyde_de_carbone') | int(0) %}
-                          {% if pluie < 1 %}
-                             {% if co2 < 800 %} --card-primary-color:#00ff13;     # Vert
-                             {% elif co2 < 1200 %} --card-primary-color:#FFED52;  # Jaune
-                             {% elif co2 < 1800 %} --card-primary-color:#FDBA6F;  # Orange
-                             {% else %} --card-primary-color:#FF5B61;             # Rouge 
-                             {% endif %}
-                          {% else %}
-                             {% if pluie < 10 %} --card-primary-color:#00ff13;       # Vert
-                             {% elif pluie < 15 %} --card-primary-color:#FFED52;     # Jaune
-                             {% elif pluie < 20 %} --card-primary-color:#FDBA6F;     # Orange
-                             {% elif pluie < 25 %} --card-primary-color:#FF5B61;     # Rouge
-                             {% else %} --card-primary-color:#bc4dc1;                # Poupre
-                             {% endif %}  
-                          {% endif %} 
-                        }
                       class: middle-left
+                      style:
+                        ha-tile-info$: |
+                         :host {
+                          width: 100%;
+                          text-align: center !important;
+                         }
+                         .primary {
+                            font-size: 160px !important;
+                            line-height: 161px !important;
+                            {% set pluie = states('sensor.tempest_st_00032986_rain_today') | float(0) %}
+                            {% set co2 = states('sensor.maison_dioxyde_de_carbone') | int(0) %}
+                            {% if pluie < 1 %}
+                              {% if co2 < 800 %} color:#00ff13 !important;     # Vert
+                              {% elif co2 < 1200 %} color:#FFED52 !important;  # Jaune
+                              {% elif co2 < 1800 %} color:#FDBA6F !important;  # Orange
+                              {% else %} color:#FF5B61 !important;             # Rouge 
+                              {% endif %}
+                            {% else %}
+                              {% if pluie < 10 %} color:#00ff13 !important;       # Vert
+                              {% elif pluie < 15 %} color:#FFED52 !important;     # Jaune
+                              {% elif pluie < 20 %} color:#FDBA6F !important;     # Orange
+                              {% elif pluie < 25 %} color:#FF5B61 !important;     # Rouge
+                              {% else %} color:#bc4dc1 !important;                # Poupre
+                              {% endif %}  
+                            {% endif %} 
+                         }
                       
                   - type: custom:html-card
                     title: ''
                     card_mod:
                       class: bar-left
                     content: |
-                      <h1>Humidité (%)-Taux (mm/h)</h1>
+                      <h1>Humidité - Taux pluie</h1>
                       
                   - type: custom:mushroom-template-card
                     primary: >-
@@ -292,32 +326,34 @@ views:
                       {% else %} 
                          {{ states('sensor.tempest_st_00032986_humidity') | round(1) }}
                       {% endif %} 
-                    tap_action:
-                      action: none
                     card_mod:
-                      style: |
-                        ha-card {
-                          --card-primary-font-size: 160px;
-                          --card-primary-line-height: 161px !important;
-                          text-align: center;
-                          {% set taux = states('sensor.tempest_st_00032986_rain_rate') | float(0) %}
-                          {% if taux > 0 %}
-                             {% if taux < 10 %} --card-primary-color:#00ff13;       # Vert
-                             {% elif taux < 15 %} --card-primary-color:#FFED52;     # Jaune
-                             {% elif taux < 20 %} --card-primary-color:#FDBA6F;     # Orange
-                             {% else %} --card-primary-color:#FF5B61;               # Rouge
-                             {% endif %} 
-                          {% else %} 
-                            --card-primary-color:#FFFFFF; # Blanc
-                          {% endif %} 
-                        }
                       class: middle-left
+                      style:
+                        ha-tile-info$: |
+                         :host {
+                          width: 100%;
+                          text-align: center !important;
+                         }
+                         .primary {
+                            font-size: 160px !important;
+                            line-height: 161px !important;
+                            {% set taux = states('sensor.tempest_st_00032986_rain_rate') | float(0) %}
+                            {% if taux > 0 %}
+                              {% if taux < 10 %} color:#00ff13 !important;       # Vert
+                              {% elif taux < 15 %} color:#FFED52 !important;     # Jaune
+                              {% elif taux < 20 %} color:#FDBA6F !important;     # Orange
+                              {% else %} color:#FF5B61 !important;               # Rouge
+                              {% endif %} 
+                            {% else %} 
+                              color:#FFFFFF !important; # Blanc
+                            {% endif %} 
+                         }
                   - type: custom:html-card
                     title: ''
                     card_mod:
                       class: bar-left
                     content: |
-                      <h1>Pression (hPa)</h1>
+                      <h1>Pression</h1>
                       
                   - type: custom:mushroom-template-card
                     primary: >-
@@ -326,18 +362,22 @@ views:
                     tap_action:
                       action: none
                     card_mod:
-                      style: |
-                        ha-card {
-                          --card-primary-font-size: 150px;
-                          --card-primary-line-height: 161px !important;
-                          text-align: center;
-                          {% set niv = states('sensor.pression_determiner_etat') | int(0) %}
-                          {% if niv == 1 %} --card-primary-color:#FFED52;   # Jaune
-                          {% elif niv == 2 %} --card-primary-color:#00ff13; # Vert
-                          {% else %} --card-primary-color:#FFFFFF;          # Blanc
-                          {% endif %} 
-                        }
                       class: middle-left
+                      style:
+                        ha-tile-info$: |
+                         :host {
+                          width: 100%;
+                          text-align: center !important;
+                         }
+                         .primary {
+                            font-size: 160px !important;
+                            line-height: 161px !important;
+                            {% set niv = states('sensor.tempest_st_00032986_pressure_trend') %}
+                            {% if niv == 'Falling' %} color:#FFED52 !important;   # Jaune
+                            {% elif niv == 'Rising' %} color:#00ff13 !important; # Vert
+                            {% else %} color:#FFFFFF !important;          # Blanc
+                            {% endif %} 
+                         }
                   - type: custom:html-card
                     title: ''
                     content: '&nbsp;'
