@@ -1,128 +1,171 @@
-        type: horizontal-stack
+type: panel
+theme: !include ../Cartes/Carte-Theme.yaml
+path: Vue-F1
+title: F1
+icon: mdi:flag-checkered
+cards:
+  - type: horizontal-stack
+    cards:
+      - type: vertical-stack
         cards:
-          - type: vertical-stack
-            cards:
-              - type: heading
-                heading: Prochaine course
-                heading_style: title
-                icon: mdi:flag-checkered
-              - type: custom:formulaone-card
-                card_type: countdown
-                show_raceinfo: true
-                f1_font: true
-                only_show_date: true
-                show_refresh: true
-                translations:
-                  days: j
-                  hours': h
-                  minutes': m
-                  seconds': s
-                  date: Date
-                  practice1: Libres 1
-                  practice2: Libres 2
-                  practice3: Libres 3
-                  round: Course
-                  race: Course
-                  racename: Nom
-                  circuitname: Piste
-                  location: Endroit
-                  city: Ville
-                  racetime: Course
-                  sprint: Sprint
-                  qualifying: Qualifications
-                  endofseason: Saison terminée
-                hide_tracklayout: false
-                location_clickable: false
-                hide_racedatetimes: false
-                show_weather: false
-                show_lastyears_result: true
-                grid_options:
-                  rows: full
-          - type: vertical-stack
-            cards:
-              - type: heading
-                heading: Résultats
-                heading_style: title
-                icon: mdi:flag-outline
-              - type: custom:tabbed-card
-                styles:
-                  '--mdc-theme-primary': red
-                  '--mdc-tab-text-label-color-default': yellow
-                options: {}
-                tabs:
-                  - card:
-                      type: custom:formulaone-card
-                      card_type: results
-                      title: Dernière course
-                      f1_font: true
-                      show_refresh: true
-                      hide_tracklayout: true
-                      icons:
-                        results: mdi:trophy
-                        qualifying: mdi:timer-outline
-                        sprint: mdi:flag-checkered
-                      standings:
-                        show_team: false
-                        show_teamlogo: false
-                      translations:
-                        raceheader: Course
-                        seasonheader: Saison
-                        selectseason: Choisir une saison
-                        selectrace: Choisir une course
-                        noresults: Pas de résultats
-                        driver: Pilote
-                        team: Équipe
-                        grid: Grille
-                        status: Statut
-                        point: Points
-                        nosprint: Pas de résultats
-                    attributes:
-                      label: Dernière
-                  - card:
-                      type: custom:formulaone-card
-                      card_type: driver_standings
-                      title: Classement des pilotes
-                      f1_font: true
-                      standings:
-                        show_team: false
-                        show_teamlogo: false
-                      translations:
-                        points: Points
-                        wins: Gagnées
-                        team: Équipe
-                        driver: Pilote
-                    attributes:
-                      label: Pilotes
-                  - card:
-                      type: custom:formulaone-card
-                      card_type: constructor_standings
-                      title: Classement des équipes
-                      f1_font: true
-                      standings:
-                        show_teamlogo: false
-                      translations:
-                        constructor: Équipe
-                        points: Points
-                        wins: Gagné
-                    attributes:
-                      label: Équipes
-                  - card:
-                      type: custom:formulaone-card
-                      card_type: schedule
-                      title: Horaire
-                      date_locale: ca
-                      f1_font: true
-                      translations:
-                        date: Date
-                        race: Course
-                        location: Endroit
-                        endofseason: Fin de la saison
-                        time: Heure
-                      standings:
-                        show_team: false
-                        show_teamlogo: false
-                    attributes:
-                      label: Horaire
-                grid_options:
-                  columns: full
-                  rows: full
+          - type: heading
+            heading: Prochaine course
+            heading_style: title
+            icon: mdi:flag-checkered
+          - type: custom:formulaone-card
+            card_type: countdown
+            countdown_type:
+              - race
+              - qualifying
+            countdown_format: d h m
+            show_raceinfo: true
+            f1_font: true
+            only_show_date: true
+            show_refresh: true
+            translations:
+              days: j
+              hours': h
+              minutes': m
+              seconds': s
+              date: Date
+              practice1: Libres 1
+              practice2: Libres 2
+              practice3: Libres 3
+              round: Course
+              race: Course
+              racename: Nom
+              circuitname: Piste
+              location: Endroit
+              city: Ville
+              racetime: Course
+              sprint: Sprint
+              qualifying: Qualification
+              endofseason: Saison terminée
+              until: Avant la
+            hide_tracklayout: false
+            location_clickable: false
+            hide_racedatetimes: false
+            show_weather: false
+            show_lastyears_result: true
+            grid_options:
+              rows: full
+      - type: vertical-stack
+        cards:
+          - type: heading
+            heading: Résultats
+            heading_style: title
+            icon: mdi:flag-outline
+          - type: custom:tabbed-card
+            styles:
+              "--mdc-theme-primary": red
+              "--mdc-tab-text-label-color-default": yellow
+            options: {}
+            tabs:
+              - card:
+                  type: custom:formulaone-card
+                  card_type: results
+                  title: Dernière course
+                  f1_font: true
+                  show_refresh: true
+                  hide_tracklayout: true
+                  icons:
+                    results: mdi:trophy
+                    qualifying: mdi:timer-outline
+                    sprint: mdi:flag-checkered
+                  standings:
+                    show_flag: true
+                    show_team: true
+                    show_teamlogo: true
+                  translations:
+                    raceheader: Course
+                    seasonheader: Saison
+                    selectseason: Choisir une saison
+                    selectrace: Choisir une course
+                    noresults: Pas de résultats
+                    driver: Pilote
+                    team: Équipe
+                    grid: Grille
+                    status: Statut
+                    point: Points
+                    nosprint: Pas de résultats
+                    Finished: Fini
+                    +1 Lap: +1 tour
+                    Engine: Moteur
+                    +2 Laps: +2 tours
+                    Accident: Accident
+                    Collision: Collision
+                    Gearbox: Boîte de vitesse
+                    Spun off: Dérivé
+                    +3 Laps: +3 tours
+                    Suspension: Suspension
+                    +4 Laps: +4 tours
+                    Transmission: Transmission
+                    Electrical: Électrique
+                    Brakes: Freins
+                    Withdrew: Retiré
+                    +5 Laps: +5 tours
+                    Clutch: Embrayage
+                    Lapped: 1 tour
+                    Retired: Retiré
+                    Not classified: Non classé
+                    Fuel system: Système de carburant
+                    +6 Laps: +6 tours
+                    Disqualified: Disqualifié
+                    Turbo: Turbo
+                    Hydraulics: Hydraulique
+                    Overheating: Surchauffe
+                    Ignition: Allumage
+                    Oil leak: Fuite d'huile
+                    Throttle: Étrangler
+                    Out of fuel: En panne de carburant
+                attributes:
+                  label: Dernière
+              - card:
+                  type: custom:formulaone-card
+                  card_type: driver_standings
+                  title: Classement des pilotes
+                  f1_font: true
+                  standings:
+                    show_flag: true
+                    show_team: true
+                    show_teamlogo: true
+                  translations:
+                    points: Points
+                    wins: Gagnées
+                    team: Équipe
+                    driver: Pilote
+                attributes:
+                  label: Pilotes
+              - card:
+                  type: custom:formulaone-card
+                  card_type: constructor_standings
+                  title: Classement des équipes
+                  f1_font: true
+                  standings:
+                    show_teamlogo: true
+                  translations:
+                    constructor: Équipe
+                    points: Points
+                    wins: Gagné
+                attributes:
+                  label: Équipes
+              - card:
+                  type: custom:formulaone-card
+                  card_type: schedule
+                  title: Horaire
+                  date_locale: ca
+                  f1_font: true
+                  translations:
+                    date: Date
+                    race: Course
+                    location: Endroit
+                    endofseason: Fin de la saison
+                    time: Heure
+                  standings:
+                    show_team: true
+                    show_teamlogo: true
+                attributes:
+                  label: Horaire
+            grid_options:
+              columns: full
+              rows: full
